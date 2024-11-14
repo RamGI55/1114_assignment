@@ -76,8 +76,6 @@ int main()
 	int minFund = 500; 
 	int maxGame = 10;
 
-	// TODO: 2열 어레이 만들기 // 
-
 	// console 
 	for (int i = 0; i < maxGame; i ++ )
 	{
