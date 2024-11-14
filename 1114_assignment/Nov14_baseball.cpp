@@ -1,57 +1,121 @@
-// Assignment 
-// number baseball game 
-
-	// variables 
-
-// int player [3] 
-// int computer [3] restains 0 to 9 
-// 
-// int bet 
-// int funds 
-// 100 <= int bet <= funds 
-
-// gain condition - when the player get strikes, no matter how much strike player got 
-// gain - bet * 2
-
-// 10 games total 
-// or 
-// runs out player funds.
-
-// if player gets too many money, print warning sign the house pissed off. 
-// if earn player more than 100000 then stop the game and kill the player. 
-
-	// 
-
-// player vs computer 
-// range restain 0 <= r <= 9
-// computer - srand, rand%9 
-// computer - 2, 3, 5  >> player assumes numbers what computer got in the order, order-senstive. 
-
-// if only number is matched - ball 
-// if number and orders are matched - strike 
-
-// e,g, 
-//  3, 4 ,5 - c 
-//  4, 3, 3 - p 
-// prints 2 balls.	
-
-//  3 , 4 , 1
-//  3 , 1, 4 
-// 2b 1s - counts 2s
-
-// 3s player wins 
-
-// players can be
-
 #include <iostream>
 
 using namespace std; 
-// ============ ±¤¿ª º¯¼ö ¿µ¿ª ============= // 
-int number[10] = { 0, 1, 2, 3 , 4, 5, 6, 7, 8, 9 };
-int player[3] = { 0, };
-int computer[3] = { 0, };
+// ============ ê´‘ì—­ ë³€ìˆ˜ ì˜ì—­ ============= // 
 
-//int computerRand()
+
+void InputplayCom(int& inputPlayer, int& inputComputer);
+
+
+
+int main()
+{
+	// ====== variation ì˜ì—­ ========= // 
+	int pBet = 0;
+	int pFund = 0;
+	int minFund = 500; 
+	int maxGame = 10;
+	int winMulti = 2;
+	int game = 0;
+
+	int number[10] = { 0, 1, 2, 3 , 4, 5, 6, 7, 8, 9 };
+	int player[3] ={};
+	int computer[3] ={}; 
+
+	int ball = 0;
+	int strike = 0; 
+
+	// console 
+	cout << "ì†Œì§€ê¸ˆì„ ì…ë ¥í•´ ì£¼ì„¸ìš” : " << endl;
+	cin >> pFund;
+	cout << endl;
+	
+	// minFund ë³´ë‹¤ ë‚®ì„ì‹œ. 
+
+	while (minFund > pFund)
+		if (minFund > pFund)
+		{
+			cout << "ì†Œì§€ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤. (ìµœì†Œ 500) " << endl;
+			cout << "ì†Œì§€ê¸ˆì„ ì…ë ¥í•´ ì£¼ì„¸ìš”: " << endl;
+			cin >> pFund; 
+			cout << endl; 
+		}
+
+		cout << " ë°°íŒ… ê¸ˆì•¡ì„ ì…ë ¥í•´ì£¼ì„¸ìš”  " << endl;
+		cin >> pBet; 
+
+		while (minFund > pBet)
+			if (minFund > pBet)
+			{
+				cout << "ìµœì†Œ ë°°íŒ…ê¸ˆì•¡ì€ " << minFund << " ì…ë‹ˆë‹¤. " << endl; 
+				cout << " ë°°íŒ… ê¸ˆì•¡ì„ ì…ë ¥í•´ì£¼ì„¸ìš”:  " << endl;
+				cin >> pBet; 
+				cout << endl;
+				
+		
+
+			}
+		while (pBet > pFund)
+			if (pBet > pFund)
+			{
+				cout << "ì†Œì§€ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤. "<< endl;
+				cout << " ë°°íŒ… ê¸ˆì•¡ì„ ì…ë ¥í•´ì£¼ì„¸ìš”:  " << endl;
+				cin >> pBet;
+				cout << endl;
+			}
+	// ==== Making the player function ======= // 
+	pFund =pFund - pBet; 
+	while (game <= maxGame)
+	{	
+		for (int i = 0; i < 3; i++)
+		{
+			 cout << i + 1<< " ë²ˆì§¸ ìˆ«ìë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”. : "; 
+			 cin >> player [i]; 
+			
+			 if (0 > player[i] || player[i] > 10)
+			 {
+				cout << "ì˜ëª»ëœ ë²ˆí˜¸ ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”. : ";
+				i--;
+				continue;
+			 }
+			 computer[i] = rand()% 10;
+
+			cout << "ë‹¹ì‹ ì˜" << i +1 << " ë²ˆì§¸ ìˆ«ìëŠ”" << player[i] << endl; 
+			cout << "ì»´í“¨í„°ì˜" << i +1 << " ë²ˆì§¸ ìˆ«ìëŠ”" << computer[i] << endl; 
+			for (int j = 0; j < 3 ; j++)
+			{
+				// TODO :: Ball counts double when the player put duplicated number, e.g. 3, 3, 5 > counts 2 balls. 
+				if (player[i] == computer [j])
+				{
+					ball++; 
+
+				}
+				if (player[i] == computer[i])
+				{
+						strike ++;
+						ball--;
+
+				}
+			}
+
+			
+		}
+		
+		// result 
+		cout << ball << endl; 
+		cout << strike << endl; 
+		cout << pFund << endl;
+		game ++;
+	}
+	pFund = pFund + (pBet * (ball + strike) * winMulti);
+} 
+
+	
+	 // ==== í•¨ìˆ˜ êµ¬ì—­ ====== //
+
+
+
+		//int computerRand()
 //{
 //	
 //	int dest, sour, temp;
@@ -66,59 +130,6 @@ int computer[3] = { 0, };
 //		computer[sour] = temp;
 //
 //	}
+		// í•¨ìˆ˜ 2 - ì ìˆ˜ ë¹„êµí•´ì„œ ê²°ê³¼ ë„ì¶œ 
 
-
-int main()
-{
-	// ====== variation ========= // 
-	int pBet = 0;
-	int pFund = 0;
-	int minFund = 500; 
-	int maxGame = 10;
-
-	// console 
-	for (int i = 0; i < maxGame; i ++ )
-	{
-		cout << "°¡Áö°í ÀÖ´Â µ·À» ÀÔ·ÂÇÏ¼¼¿ä "; 
-		cin >> pFund; 
-
-		if (pFund < minFund)
-			{
-				cout << " °¡Áö°í ÀÖ´Â µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù."; 
-			}
-		else
-			{
-				cout << "¹èÆÃ ÇÏ°íÀÚ ÇÏ´Â µ·À» ÀÔ·ÂÇÏ¼¼¿ä ";
-				cin >> pBet;
-				pFund = pFund - pBet;
-
-				int dest, sour, temp;
-				for (int i = 0; i < 256; i++)
-				{
-					srand(time(0));
-					dest = rand() % 10;
-					sour = rand() % 10;
-					// should I have to make dummy values? 
-					temp = computer[dest];
-					computer[dest] = computer[sour];
-					computer[sour] = temp;
-
-				}
-
-
-
-				// for player 
-				for (int i = 0; i < 3; i++)
-				{
-					cout << computer << endl; // debug 
-					cout << pFund << endl; // debug
-					cout << i + 1 << " ¹øÂ° ¹øÈ£ ÀÔ·Â." << endl;
-					cin >> player[i];
-		
-				}
-				cout << i + 1 << "¹øÂ° °ÔÀÓ : "<<  player << endl;
-
-			// ÀÔ·Â Ã¼°è ¸¸µé±â, ÄÄÇ»ÅÍ ·£´ı, ÇÃ·¹ÀÌ¾î Á÷Á¢ÀÔ·Â// 
-			}
-	}
-}
+		// í•¨ìˆ˜ 3 -
