@@ -14,7 +14,7 @@ int main()
 	int pBet = 0;
 	int pFund = 0;
 	int minFund = 500; 
-	int maxGame = 10;
+	int maxGame = 0;
 	int winMulti = 2;
 	int game = 0;
 
@@ -51,8 +51,6 @@ int main()
 				cout << " 배팅 금액을 입력해주세요:  " << endl;
 				cin >> pBet; 
 				cout << endl;
-				
-		
 
 			}
 		while (pBet > pFund)
@@ -64,7 +62,7 @@ int main()
 				cout << endl;
 			}
 	// ==== Making the player function ======= // 
-	pFund =pFund - pBet; 
+	pFund = pFund - pBet; 
 	while (game <= maxGame)
 	{	
 		for (int i = 0; i < 3; i++)
@@ -80,35 +78,49 @@ int main()
 			 }
 			 computer[i] = rand()% 10;
 
-			cout << "당신의" << i +1 << " 번째 숫자는" << player[i] << endl; 
-			cout << "컴퓨터의" << i +1 << " 번째 숫자는" << computer[i] << endl; 
-			for (int j = 0; j < 3 ; j++)
-			{
-				// TODO :: Ball counts double when the player put duplicated number, e.g. 3, 3, 5 > counts 2 balls. 
-				if (player[i] == computer [j])
-				{
-					ball++; 
 
-				}
-				if (player[i] == computer[i])
-				{
-						strike ++;
-						ball--;
-
-				}
 			}
 
+			for (int i = 0; i < 3 ; i ++)
+			{
+				for (int j = 0; j < 3 ; j++)
+				{
+					// TODO :: Ball counts double when the player put duplicated number, e.g. 3, 3, 5 > counts 2 balls. 
+					// Ball counter goes negative value. 
+					if (player[i] == computer[i])
+					{
+						strike ++;
+						break;
+						
+					}
+					else if (player[i] == computer [j])
+					{
+						ball++; 
+						break;
+					}
 			
-		}
-		
-		// result 
-		cout << ball << endl; 
-		cout << strike << endl; 
-		cout << pFund << endl;
+				}
+
+			
+			}
+		// result
+		cout << "당신의 1 번째 숫자는 " << player[0] << endl; 
+		cout << "당신의 2 번째 숫자는 " << player[1] << endl; 
+		cout << "당신의 3 번째 숫자는 " << player[2] << endl; 
+		cout << "컴퓨터의 1 번째 숫자는 " << computer[0] << endl; 
+		cout << "컴퓨터의 2 번째 숫자는 " << computer[1] << endl; 
+		cout << "컴퓨터의 3 번째 숫자는 " << computer[2] << endl; 
+		pFund = pFund + (pBet * ((ball + strike) * winMulti)); 
 		game ++;
 	}
-	pFund = pFund + (pBet * (ball + strike) * winMulti);
-} 
+
+	cout << endl;
+	cout << "최종 결과"<< endl; 
+	cout << endl;
+	cout << "총 Ball 숫자 : "<<  ball << endl; 
+	cout << "총 Strike 숫자 : " << strike << endl; 
+	cout << "총 소지금 : "<< pFund << endl;
+}  
 
 	
 	 // ==== 함수 구역 ====== //
