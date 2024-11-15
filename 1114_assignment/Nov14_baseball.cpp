@@ -14,7 +14,7 @@ int main()
 	int pBet = 0;
 	int pFund = 0;
 	int minFund = 500; 
-	int maxGame = 0;
+	int maxGame = 9;
 	int winMulti = 2;
 	int game = 0;
 
@@ -26,7 +26,7 @@ int main()
 	int strike = 0; 
 
 	// console 
-	cout << "소지금을 입력해 주세요 : " << endl;
+	cout << "Please enter your funds you have: " << endl;
 	cin >> pFund;
 	cout << endl;
 	
@@ -35,20 +35,20 @@ int main()
 	while (minFund > pFund)
 		if (minFund > pFund)
 		{
-			cout << "소지금이 부족합니다. (최소 500) " << endl;
-			cout << "소지금을 입력해 주세요: " << endl;
+			cout << "Insufficient funds. (Min. 500) " << endl;
+			cout << "Please enter your funds you have: " << endl;
 			cin >> pFund; 
 			cout << endl; 
 		}
 
-		cout << " 배팅 금액을 입력해주세요  " << endl;
+		cout << "Please enter your bet amount: " << endl;
 		cin >> pBet; 
 
 		while (minFund > pBet)
 			if (minFund > pBet)
 			{
-				cout << "최소 배팅금액은 " << minFund << " 입니다. " << endl; 
-				cout << " 배팅 금액을 입력해주세요:  " << endl;
+				cout << "Min bet amount is " << minFund << endl; 
+				cout << "Please enter your bet amount: " << endl;
 				cin >> pBet; 
 				cout << endl;
 
@@ -56,8 +56,8 @@ int main()
 		while (pBet > pFund)
 			if (pBet > pFund)
 			{
-				cout << "소지금이 부족합니다. "<< endl;
-				cout << " 배팅 금액을 입력해주세요:  " << endl;
+				cout << "Insufficient funds."<< endl;
+				cout << "Please enter your bet amount: " << endl;
 				cin >> pBet;
 				cout << endl;
 			}
@@ -67,12 +67,12 @@ int main()
 	{	
 		for (int i = 0; i < 3; i++)
 		{
-			 cout << i + 1<< " 번째 숫자를 입력해 주세요. : "; 
+			 cout << "Enter your # " << i + 1 << " (0-9) : ";
 			 cin >> player [i]; 
 			
 			 if (0 > player[i] || player[i] > 10)
 			 {
-				cout << "잘못된 번호 입니다. 다시 입력해주세요. : ";
+				cout << "Incorrect number. Please enter again : ";
 				i--;
 				continue;
 			 }
@@ -104,22 +104,22 @@ int main()
 			
 			}
 		// result
-		cout << "당신의 1 번째 숫자는 " << player[0] << endl; 
-		cout << "당신의 2 번째 숫자는 " << player[1] << endl; 
-		cout << "당신의 3 번째 숫자는 " << player[2] << endl; 
-		cout << "컴퓨터의 1 번째 숫자는 " << computer[0] << endl; 
-		cout << "컴퓨터의 2 번째 숫자는 " << computer[1] << endl; 
-		cout << "컴퓨터의 3 번째 숫자는 " << computer[2] << endl; 
+		cout << "Your First draw was " << player[0] << endl; 
+		cout << "Your Second draw was " << player[1] << endl; 
+		cout << "Your Third draw was " << player[2] << endl; 
+		cout << "House's First draw was " << computer[0] << endl; 
+		cout << "House's Second draw was " << computer[1] << endl; 
+		cout << "House's Third draw was " << computer[2] << endl; 
 		pFund = pFund + (pBet * ((ball + strike) * winMulti)); 
 		game ++;
 	}
 
 	cout << endl;
-	cout << "최종 결과"<< endl; 
+	cout << "Final Result"<< endl; 
 	cout << endl;
-	cout << "총 Ball 숫자 : "<<  ball << endl; 
-	cout << "총 Strike 숫자 : " << strike << endl; 
-	cout << "총 소지금 : "<< pFund << endl;
+	cout << "Total # of Balls : "<<  ball << endl; 
+	cout << "Total # of Strikes : " << strike << endl; 
+	cout << "Total your funds so far : "<< pFund << endl;
 }  
 
 	
